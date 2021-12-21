@@ -1,52 +1,21 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+ public void Pushavta(string devices, string path)
+        {
+            RunCMD(string.Concat(new string[]
+{
+            "adb -s ",
+           devices,
+            " push  \"",
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path),
+            "\" /sdcard/Pictures/"
+}));
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.BOOT_COMPLETED -n com.android.providers.media/.MediaScannerReceiver");
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/");
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard/Pictures");
+        }
+        public void ClearAvata(string devices, string path)
+        {
+            RunCMD("adb -s " + devices + " shell rm -f /sdcard/Pictures/" + path);
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.BOOTthis.string_8_COMPLETED -n com.android.providers.media/.MediaScannerReceiver");
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///mnt/sdcard/Pictures/");
+            RunCMD("adb -s " + devices + " shell am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard/Pictures");
+        }
