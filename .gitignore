@@ -1,6 +1,6 @@
-  string[] files = Directory.GetFiles(txtpathpicture.Text);
-            string pathimg = files[rd.Next(0, files.Length)];
-            string img = Path.GetFileNameWithoutExtension(pathimg) + Path.GetExtension(pathimg);
+ string[] files = Directory.GetFiles(txtpathpicture.Text);
+string pathimg = files[rd.Next(0, files.Length)];
+string img = Path.GetFileNameWithoutExtension(pathimg) + Path.GetExtension(pathimg);
  
  
  
